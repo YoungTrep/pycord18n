@@ -15,24 +15,43 @@
 # You should have received a copy of the GNU General Public License
 # along with py18n.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import re
 from os import path
 from setuptools import setup
 
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-setup(name='Pycord18n',
-      version='1.0.2',
-      description='I18n for PyCord (A Discord.py fork)',
-      author='starsflower, YoungTrep',
-      url='https://github.com/YoungTrep/py18n',
-      packages=['pycord18n'],
-      package_dir={'pycord18n': './pycord18n'},
-      include_package_data=True,
-      install_requires=['py-cord'],
+requirements = []
+with open("requirements.txt") as rtxt:
+    requirements = rtxt.read().splitlines()
 
-      # Description
+version = ""
+with open("pycord18n/__init__.py") as initpy:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', initpy.read(), re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError('Version is not set!')
+
+setup(name='Pycord18n',
+      version=version,
+      author='YoungTrep, Ghoul',
+      author_email='youngtrep.business@gmail.com',
+      description='Localization for the discord.py fork, pycord',
       long_description=long_description,
-      long_description_content_type='text/markdown'
+      long_description_content_type='text/markdown',
+      url='https://github.com/YoungTrep/pycord18n',
+      project_urls={
+          'Issue Tracker': 'https://github.com/YoungTrep/pycord18n/issues'
+      },
+      packages=['pycord18n'],
+      license='GNU',
+      classifiers=[
+          'Programming Language :: Python :: 3',
+          'License :: OSI Approved :: GNU License',
+          'Operating System :: OS Independent',
+          'Natural Language :: English'
+      ],
+      python_requires='>=3.6',
+      install_requires=requirements
 )
