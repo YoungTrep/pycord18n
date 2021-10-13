@@ -119,7 +119,7 @@ i18n = I18nExtension([
 # This could potentially refer to a database or other file.
 # Anything you want!
 # Otherwise, it will always be the fallback locale.
-def get_locale(ctx: commands.Context):
+async def get_locale(ctx: commands.Context):
     preferences = {
        301736945610915852: "en"
     }
