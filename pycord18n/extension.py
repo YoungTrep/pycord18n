@@ -102,7 +102,7 @@ class I18nExtension(I18n):
             get_locale_func = lambda *_: self._fallback
 
         async def pre(ctx):
-            self.set_current_locale(get_locale_func(ctx))
+            self.set_current_locale(await get_locale_func(ctx))
 
         self._bot.before_invoke(pre)
 
