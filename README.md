@@ -96,7 +96,7 @@ For Pycord, we can use the extension `py18n.extension.I18nExtension`. Setup your
 
 ```python
 from discord.ext import commands
-from py18n.extension import I18nExtension
+from pycord18n.extension import I18nExtension, Language
 
 # Make our bot
 bot = commands.Bot("prefix")
